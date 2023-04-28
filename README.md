@@ -53,3 +53,130 @@ The following table compares hosting a monolithic application on different hosti
 | Definition | [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes) provides a fully managed Kubernetes option in Azure. It supports direct access to the Kubernetes API and runs any Kubernetes workload. The full cluster resides in your subscription, with the cluster configurations and operations within your control and responsibility. Teams looking for a fully managed version of Kubernetes in Azure, Azure Kubernetes Service is an ideal option. AKS supports running Windows containers on Windows Server node pools | [Azure Container Apps (ACA)](https://learn.microsoft.com/en-us/azure/container-apps/overview) enables you to run and operate microservice-based applications or containerized monolithic applications. It supports Kubernetes-style apps and microservices with features like [service discovery](https://learn.microsoft.com/en-us/azure/container-apps/connect-apps), [traffic splitting](https://learn.microsoft.com/en-us/azure/container-apps/revisions) or [Kubernetes Event-Driven Autoscaling (KEDA)](https://keda.sh/), but it doesn't provide direct access to the underlying Kubernetes APIs. [Azure Container Apps (ACA)](https://learn.microsoft.com/en-us/azure/container-apps/overview) does not support [Windows containers](https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/) | [Azure Container Instances (ACI)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview) offers the fastest and simplest way to run a container in Azure, without having to manage any virtual machines and without having to adopt a higher-level service. Azure Container Instances is a great solution for any scenario that can operate in isolated containers, including monolithic applications, task automation, and build jobs. For more information, see [ACI Considerations](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview#considerations). | [Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/overview) is an HTTP-based service for hosting web applications, REST APIs, and mobile back ends. You can develop in your favorite language, be it .NET, .NET Core, Java, Ruby, Node.js, PHP, or Python. Azure App Service does not require containerizing a web application.  |
 | Scenarios | [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes) is the recommended hosting platform when you need full container orchestration, including service discovery across multiple containers, automatic scaling, load balancing, and coordinated application upgrades for both Linux and Windows monolithic applications. | [Azure Container Apps (ACA)](https://learn.microsoft.com/en-us/azure/container-apps/overview) is an ideal alternative to Azure Kubernetes Service (AKS) for hosting Linux-based monolithic applications when the development and operations teams don't have the necessary expertise to deploy, operate, and maintain a full-fledged Kubernetes project. | [Azure Container Instances (ACI)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview) is a great solution for any scenario that can operate in isolated containers, including Linux or Windows monolithic applications that don't to need to dynamically scale out or scale in, task automation, and build jobs. ACI is good hosting platform for Windows services, task automation, or CI/CD agents, but it's not a good fit for hosting web applications that need load balancing and autoscaling.  | [Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/overview) is an ideal solution for hosting a web application developed with the .NET framework or Java, while it's not ideal for hosting a monolithic application that does not expose a web interface, for example a backend application running in a Windows service. |
 
+## Personas x Azure Services x Monolith points of concern
+
+The following table compares the different points of concern on hosting monolith apps on Azure container services according to personas
+
+<table>
+<thead>
+  <tr>
+    <th colspan="2"></th>
+    <th>Azure Kubernetes Service (AKS)</th>
+    <th>Azure Container Apps (ACA)</th>
+    <th>Azure Container Instances (ACI)</th>
+    <th>Azure App Service</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Persona</td>
+    <td>Category</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td rowspan="3">Developer</td>
+    <td>Tooling</td>
+    <td>- Any Kubernetes-compatible client tool works<br>(kubectl, VsCode, Visual Studio, etc...)<br>- Azure native tools (Portal, CLI)</td>
+    <td>- VsCode, Azure CLI, Portal</td>
+    <td>- VsCode, Azure CLI, Portal</td>
+    <td>- VsCode, Azure CLI, Portal</td>
+  </tr>
+  <tr>
+    <td>Session management</td>
+    <td>- <a href="https://azure.github.io/application-gateway-kubernetes-ingress/features/cookie-affinity/" target="_blank" rel="noopener noreferrer">Session affinity is supported</a></td>
+    <td>- <a href="https://learn.microsoft.com/azure/container-apps/sticky-sessions?pivots=azure-portal#configure-session-affinity" target="_blank" rel="noopener noreferrer">Session affinity is supported</a></td>
+    <td>- Stateless apps only</td>
+    <td>- Session affinity is supported</td>
+  </tr>
+  <tr>
+    <td>App configuration<br>- File system vs environment variables</td>
+    <td>- </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td rowspan="2">Technical Decision Maker</td>
+    <td>Cost</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Management overhead</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Operations and DevOps</td>
+    <td>Scalability<br>- Ingress<br>- Vertical Scaling (scaling UP) vs Horizontal Scaling (scaling OUT)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Deployment<br>- CI/CD tooling<br>- Support for statefulsets (mention Databases, messaging components)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Networking<br>- Private link support?<br>- Service mesh support</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Container operating system support<br>- Windows vs Linux</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Web-server<br>- Apache, NGINX, IIS</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Monitoring<br>- Log and tracing <br>- Alerts</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Security<br>- EasyAuth support<br>- Authentication/Authorization</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>BCDR <br>- Backup<br>- Disaster recovery</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+
