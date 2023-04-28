@@ -114,7 +114,7 @@ The following table compares the different points of concern on hosting monolith
     <td></td>
   </tr>
   <tr>
-    <td>Operations and DevOps</td>
+    <td rowspan="8">Operations and DevOps</td>
     <td>Scalability<br>- Ingress<br>- Vertical Scaling (scaling UP) vs Horizontal Scaling (scaling OUT)</td>
     <td></td>
     <td></td>
@@ -122,7 +122,6 @@ The following table compares the different points of concern on hosting monolith
     <td></td>
   </tr>
   <tr>
-    <td></td>
     <td>Deployment<br>- CI/CD tooling<br>- Support for statefulsets (mention Databases, messaging components)</td>
     <td></td>
     <td></td>
@@ -130,7 +129,6 @@ The following table compares the different points of concern on hosting monolith
     <td></td>
   </tr>
   <tr>
-    <td></td>
     <td>Networking<br>- Private link support?<br>- Service mesh support</td>
     <td></td>
     <td></td>
@@ -138,7 +136,6 @@ The following table compares the different points of concern on hosting monolith
     <td></td>
   </tr>
   <tr>
-    <td></td>
     <td>Container operating system support<br>- Windows vs Linux</td>
     <td></td>
     <td></td>
@@ -146,7 +143,6 @@ The following table compares the different points of concern on hosting monolith
     <td></td>
   </tr>
   <tr>
-    <td></td>
     <td>Web-server<br>- Apache, NGINX, IIS</td>
     <td></td>
     <td></td>
@@ -154,7 +150,6 @@ The following table compares the different points of concern on hosting monolith
     <td></td>
   </tr>
   <tr>
-    <td></td>
     <td>Monitoring<br>- Log and tracing <br>- Alerts</td>
     <td></td>
     <td></td>
@@ -162,7 +157,6 @@ The following table compares the different points of concern on hosting monolith
     <td></td>
   </tr>
   <tr>
-    <td></td>
     <td>Security<br>- EasyAuth support<br>- Authentication/Authorization</td>
     <td></td>
     <td></td>
@@ -170,7 +164,6 @@ The following table compares the different points of concern on hosting monolith
     <td></td>
   </tr>
   <tr>
-    <td></td>
     <td>BCDR <br>- Backup<br>- Disaster recovery</td>
     <td></td>
     <td></td>
@@ -179,4 +172,3 @@ The following table compares the different points of concern on hosting monolith
   </tr>
 </tbody>
 </table>
-
